@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListWebServices", "ToDoListWebServices\ToDoListWebServices.csproj", "{97F5D9EC-8336-4732-BF6F-113240942E7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListWebApp", "ToDoListWebApp\ToDoListWebApp.csproj", "{6B9FEE43-9763-4A33-871A-8224D740EDD5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97F5D9EC-8336-4732-BF6F-113240942E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F5D9EC-8336-4732-BF6F-113240942E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F5D9EC-8336-4732-BF6F-113240942E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F5D9EC-8336-4732-BF6F-113240942E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B9FEE43-9763-4A33-871A-8224D740EDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B9FEE43-9763-4A33-871A-8224D740EDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B9FEE43-9763-4A33-871A-8224D740EDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B9FEE43-9763-4A33-871A-8224D740EDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBE5E84E-52B1-4EC2-94EB-FA8C27755752}
+	EndGlobalSection
+EndGlobal

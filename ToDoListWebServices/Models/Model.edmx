@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TO_DO_LISTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOARD">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="REL_TICKET_HAS_STATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_ticket" Type="bigint" Nullable="false" />
+          <Property Name="id_status" Type="bigint" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="color" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nchar" MaxLength="1000" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="estimated_time" Type="int" Nullable="false" />
+          <Property Name="board_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BOARD_USER">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="BOARD" Type="Self.BOARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BOARD">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REL_TICKET_HAS_STATUS_STATUS">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
+          <End Role="REL_TICKET_HAS_STATUS" Type="Self.REL_TICKET_HAS_STATUS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="REL_TICKET_HAS_STATUS">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REL_TICKET_HAS_STATUS_TICKET">
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
+          <End Role="REL_TICKET_HAS_STATUS" Type="Self.REL_TICKET_HAS_STATUS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TICKET">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="REL_TICKET_HAS_STATUS">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TICKET_BOARD">
+          <End Role="BOARD" Type="Self.BOARD" Multiplicity="1" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOARD">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="board_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TO_DO_LISTModelStoreContainer">
+          <EntitySet Name="BOARD" EntityType="Self.BOARD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REL_TICKET_HAS_STATUS" EntityType="Self.REL_TICKET_HAS_STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TICKET" EntityType="Self.TICKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BOARD_USER" Association="Self.FK_BOARD_USER">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BOARD" EntitySet="BOARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REL_TICKET_HAS_STATUS_STATUS" Association="Self.FK_REL_TICKET_HAS_STATUS_STATUS">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="REL_TICKET_HAS_STATUS" EntitySet="REL_TICKET_HAS_STATUS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REL_TICKET_HAS_STATUS_TICKET" Association="Self.FK_REL_TICKET_HAS_STATUS_TICKET">
+            <End Role="TICKET" EntitySet="TICKET" />
+            <End Role="REL_TICKET_HAS_STATUS" EntitySet="REL_TICKET_HAS_STATUS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TICKET_BOARD" Association="Self.FK_TICKET_BOARD">
+            <End Role="BOARD" EntitySet="BOARD" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TO_DO_LISTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOARD">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int64" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK_BOARD_USER" FromRole="BOARD" ToRole="USERS" />
+          <NavigationProperty Name="TICKET" Relationship="Self.FK_TICKET_BOARD" FromRole="BOARD" ToRole="TICKET" />
+        </EntityType>
+        <EntityType Name="REL_TICKET_HAS_STATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_ticket" Type="Int64" Nullable="false" />
+          <Property Name="id_status" Type="Int64" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="STATUS" Relationship="Self.FK_REL_TICKET_HAS_STATUS_STATUS" FromRole="REL_TICKET_HAS_STATUS" ToRole="STATUS" />
+          <NavigationProperty Name="TICKET" Relationship="Self.FK_REL_TICKET_HAS_STATUS_TICKET" FromRole="REL_TICKET_HAS_STATUS" ToRole="TICKET" />
+        </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="REL_TICKET_HAS_STATUS" Relationship="Self.FK_REL_TICKET_HAS_STATUS_STATUS" FromRole="STATUS" ToRole="REL_TICKET_HAS_STATUS" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estimated_time" Type="Int32" Nullable="false" />
+          <Property Name="board_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BOARD" Relationship="Self.FK_TICKET_BOARD" FromRole="TICKET" ToRole="BOARD" />
+          <NavigationProperty Name="REL_TICKET_HAS_STATUS" Relationship="Self.FK_REL_TICKET_HAS_STATUS_TICKET" FromRole="TICKET" ToRole="REL_TICKET_HAS_STATUS" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BOARD" Relationship="Self.FK_BOARD_USER" FromRole="USERS" ToRole="BOARD" />
+        </EntityType>
+        <Association Name="FK_BOARD_USER">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="BOARD" Type="Self.BOARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BOARD">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TICKET_BOARD">
+          <End Role="BOARD" Type="Self.BOARD" Multiplicity="1" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOARD">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="board_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REL_TICKET_HAS_STATUS_STATUS">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
+          <End Role="REL_TICKET_HAS_STATUS" Type="Self.REL_TICKET_HAS_STATUS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="REL_TICKET_HAS_STATUS">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REL_TICKET_HAS_STATUS_TICKET">
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
+          <End Role="REL_TICKET_HAS_STATUS" Type="Self.REL_TICKET_HAS_STATUS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TICKET">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="REL_TICKET_HAS_STATUS">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TO_DO_LISTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOARD" EntityType="Self.BOARD" />
+          <EntitySet Name="REL_TICKET_HAS_STATUS" EntityType="Self.REL_TICKET_HAS_STATUS" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TICKET" EntityType="Self.TICKET" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <AssociationSet Name="FK_BOARD_USER" Association="Self.FK_BOARD_USER">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BOARD" EntitySet="BOARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TICKET_BOARD" Association="Self.FK_TICKET_BOARD">
+            <End Role="BOARD" EntitySet="BOARD" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REL_TICKET_HAS_STATUS_STATUS" Association="Self.FK_REL_TICKET_HAS_STATUS_STATUS">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="REL_TICKET_HAS_STATUS" EntitySet="REL_TICKET_HAS_STATUS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REL_TICKET_HAS_STATUS_TICKET" Association="Self.FK_REL_TICKET_HAS_STATUS_TICKET">
+            <End Role="TICKET" EntitySet="TICKET" />
+            <End Role="REL_TICKET_HAS_STATUS" EntitySet="REL_TICKET_HAS_STATUS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TO_DO_LISTModelStoreContainer" CdmEntityContainer="TO_DO_LISTEntities">
+          <EntitySetMapping Name="BOARD">
+            <EntityTypeMapping TypeName="TO_DO_LISTModel.BOARD">
+              <MappingFragment StoreEntitySet="BOARD">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REL_TICKET_HAS_STATUS">
+            <EntityTypeMapping TypeName="TO_DO_LISTModel.REL_TICKET_HAS_STATUS">
+              <MappingFragment StoreEntitySet="REL_TICKET_HAS_STATUS">
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUS">
+            <EntityTypeMapping TypeName="TO_DO_LISTModel.STATUS">
+              <MappingFragment StoreEntitySet="STATUS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="color" ColumnName="color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TO_DO_LISTModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKET">
+            <EntityTypeMapping TypeName="TO_DO_LISTModel.TICKET">
+              <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="estimated_time" ColumnName="estimated_time" />
+                <ScalarProperty Name="board_id" ColumnName="board_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="TO_DO_LISTModel.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
