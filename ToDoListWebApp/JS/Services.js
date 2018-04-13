@@ -3,10 +3,10 @@
     var toDoListResource = {};
 
     //toDoList.user this object storage the user than have session active.
-    toDoList.user = {};
+    toDoListResource.user = {};
 
     //Web api URL head.
-    toDoList.url = "http://localhost:3641/";
+    toDoListResource.url = "http://localhost:3641/";
 
 
     /**
@@ -17,8 +17,8 @@
     * @since      11.04.2018
     * @return toDoList.user object with the principal menu data.
     */
-    toDoList.getUser = function () {
-        return toDoList.user;
+    toDoListResource.getUser = function () {
+        return toDoListResource.user;
     }
 
     /**
@@ -29,8 +29,8 @@
     * @since      11.04.2018
     * @return toDoList.url string with the url web api head.
     */
-        toDoList.getUrl = function () {
-            return toDoList.url;
+        toDoListResource.getUrl = function () {
+            return toDoListResource.url;
         }
-        return toDoList;
+    return toDoListResource;
 }]);

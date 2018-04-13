@@ -1,0 +1,60 @@
+﻿* {
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #E9EFF1;
+}
+.todolist-jumbotron {
+    padding: 1em 0 1em 1em;
+    background-color: #3F3F3D;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.todolist-jumbotron h1 {
+    background-color:transparent;
+}
+
+.todolist-container {
+    padding:2em 0;
+}
+
+.frmcontainer {
+    padding-bottom: 1em;
+    background-color: #A49751;
+}
+.frmhead {
+    padding: 0.5em 0 0.5em 0.5em;
+    background-color: #3F3F3D;
+    color:#ffffff;
+}
+
+.fa-transparent{
+    background-color:transparent;
+}
+
+.frmsection{
+    padding:1em;
+    background-color:transparent;
+}
+
+.todolist-form-control{
+    border-radius:0;
+}
+.todolist-btn-primary {
+    position:relative;
+    border-radius: 0;
+    color: #ffffff;
+    background-color: #3F3F3D;
+    margin:0 25%;
+    cursor:pointer;
+}
+    .todolist-btn-primary:hover {
+        background-color: #5B5756;
+    }
+    .todolist-btn-primary:active {
+        background-color: #4A4743;
+    }
