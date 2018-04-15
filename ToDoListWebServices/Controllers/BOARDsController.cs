@@ -39,6 +39,20 @@ namespace ToDoListWebServices.Controllers
             return Ok(bOARD);
         }
 
+        // GET: api/BOARDs/5
+        [ResponseType(typeof(BOARD))]
+        [Route("api/" + Utils.Contants.version + "/BoardByUser/{userId}")]
+        public IHttpActionResult GetBoardByUser(int userId)
+        {
+            List<BOARD> bOARD = db.BOARD.Where(x=>x.user_id == userId).ToList();
+            if (bOARD == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bOARD);
+        }
+
         // PUT: api/BOARDs/5
         [ResponseType(typeof(void))]
         [Route("api/" + Utils.Contants.version + "/Boards/{id}")]

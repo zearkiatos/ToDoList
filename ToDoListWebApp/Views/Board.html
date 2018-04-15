@@ -1,0 +1,127 @@
+﻿<section class="jumbotron todolist-jumbotron">
+    <div class="container todolist-container">
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <h1>
+                    ToDoList++
+                </h1>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="taskbard">
+    <div class="row">
+        <div class="col-xs-5 col-sm-5 col-md-1 col-lg-1">
+            <button class="btn btn-add" data-toggle="modal" data-target="#addTaskModal">+</button> <font class="txttaskboard"> Add Task</font>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-10 col-lg-10">
+
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-1 col-lg-1">
+            <font class="txttaskboard"><i class="fa fa-user"></i> {{user.name}}</font>
+            <i class="fa fa-power-off closesession" ng-controller="HomeController" ng-click="LogUp()"></i>
+        </div>
+    </div>
+</section>
+<div class="board">
+    <div class="container">
+        <div class="row todolist-row" id="boardtable">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 statusboard" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                <h3 class="porhacer">Por Hacer</h3>
+                <section>
+                    <div class="taskcontent" id="porhacer">
+                        <div class="task" id="{{item.id}}" draggable="true" ondragstart="drag(event)" ng-repeat="item in tasks.TICKET" ng-if="item.REL_TICKET_HAS_STATUS[0].STATUS.id==4">
+                            <h4>{{item.title}}</h4>
+                            <h6>{{item.description}}</h6>
+                             <p><i class="fa fa-calendar fa-1x calendaricon"></i> {{item.date}}</p>
+                             <p><i class="fa fa-clock fa-1x timeicon"></i> {{item.estimated_time}}</p>
+                            <footer class="ticketfooter">
+                                <i class="fa fa-edit fa-1x editticket"></i> | <i class="fa fa-trash fa-1x removeticket"></i>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 statusboard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h3 class="pendiente">Pendiente</h3>
+                <section>
+                    <div class="taskcontent" id="pendiente">
+                        <div class="task" id="{{item.id}}" draggable="true" ondragstart="drag(event)" ng-repeat="item in tasks.TICKET" ng-if="item.REL_TICKET_HAS_STATUS[0].STATUS.id==1">
+                            <h4>{{item.title}}</h4>
+                            <h6>{{item.description}}</h6>
+                            <p><i class="fa fa-calendar fa-1x calendaricon"></i> {{item.date}}</p>
+                            <p><i class="fa fa-clock fa-1x timeicon"></i> {{item.estimated_time}}</p>
+                            <footer class="ticketfooter">
+                                <i class="fa fa-edit fa-1x editticket"></i> | <i class="fa fa-trash fa-1x removeticket"></i>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 statusboard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h3 class="trabajando">Trabajando</h3>
+                <section>
+                    <div class="taskcontent" id="trabajando">
+                        <div class="task" id="{{item.id}}" draggable="true" ondragstart="drag(event)" ng-repeat="item in tasks.TICKET" ng-if="item.REL_TICKET_HAS_STATUS[0].STATUS.id==2">
+                            <h4>{{item.title}}</h4>
+                            <h6>{{item.description}}</h6>
+                            <p><i class="fa fa-calendar fa-1x calendaricon"></i> {{item.date}}</p>
+                            <p><i class="fa fa-clock fa-1x timeicon"></i> {{item.estimated_time}}</p>
+                            <footer class="ticketfooter">
+                                <i class="fa fa-edit fa-1x editticket"></i> | <i class="fa fa-trash fa-1x removeticket"></i>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 statusboard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h3 class="completado">Completado</h3>
+                <section>
+                    <div class="taskcontent" id="completado">
+                        <div class="task" id="{{item.id}}" draggable="true" ondragstart="drag(event)" ng-repeat="item in tasks.TICKET" ng-if="item.REL_TICKET_HAS_STATUS[0].STATUS.id==3">
+                            <h4>{{item.title}}</h4>
+                            <h6>{{item.description}}</h6>
+                            <p><i class="fa fa-calendar fa-1x calendaricon"></i> {{item.date}}</p>
+                            <p><i class="fa fa-clock fa-1x timeicon"></i> {{item.estimated_time}}</p>
+                            <footer class="ticketfooter">
+                                <i class="fa fa-edit fa-1x editticket"></i> | <i class="fa fa-trash fa-1x removeticket"></i>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modaltodolist">
+            <div class="modal-header modaltodolistheader">
+                <h5 class="modal-title" id="addTaskModalModalLabel">Agregar Tarea</h5>
+                <button type="button" class="close todolistclose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form class="form frmaddtask" name="frmaddtask" id="frmaddtask">
+                        <input type="text" id="title" name="title" ng-model="model.task.title" placeholder="Titulo" class="form-control todolist-form-control" value="{{model.task.title}}" />
+                        <input type="text" id="description" name="description" ng-model="model.task.description" placeholder="Descripción" class="form-control todolist-form-control" value="{{model.task.description}}" />
+                        <input type="number" id="estimated_time" name="estimated_time" ng-model="model.task.estimated_time" placeholder="Tiempo Estimado en Horas" min="0" max="999" class="form-control todolist-form-control" value="{{model.task.estimated_time}}" />
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn todolist-btn-primary" ng-click="addTask()">Agregar Tarea</button>
+                <button type="button" class="btn todolist-btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

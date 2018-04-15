@@ -12,6 +12,7 @@ body {
     background-color: #3F3F3D;
     color:#ffffff;
     border-radius:0;
+    margin-bottom:0;
 }
 
 .todolist-jumbotron h1 {
@@ -43,6 +44,7 @@ body {
 
 .todolist-form-control{
     border-radius:0;
+    margin-top:0.5em !important;
 }
 .todolist-btn-primary {
     position:relative;
@@ -58,3 +60,176 @@ body {
     .todolist-btn-primary:active {
         background-color: #4A4743;
     }
+
+#notifications{
+    display:none;
+}
+
+.taskbard {
+    padding: 0.5em 0 0.5em 1em;
+    background-color:#A49751;
+    margin-bottom:0;
+}
+
+.btn-add {
+    background-color: #28a745;
+    color:#ffffff;
+    border-radius:50%;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+    .btn-add:hover {
+        background-color: #b8d2af;
+    }
+
+    .btn-add:active {
+        background-color: #657d61;
+    }
+
+.txttaskboard{
+    font-weight:bold;
+    color:#ffffff;
+}
+
+.closesession {
+    color: #28a745;
+    cursor:pointer;
+    margin-left:1em;
+}
+
+.closesession:hover {
+    color: #ffd800;
+}
+
+    .closesession:active {
+        color: #ff0000;
+    }
+.board{
+    width:100% !important;
+}
+
+.statusboard {
+    border: 8px solid;
+    min-height: 1024px;
+    padding: 0;
+    overflow: auto;
+
+}
+    .statusboard section {
+        padding: 0 0.5em;
+    }
+
+    .todolist-row {
+        margin: 0;
+    }
+
+.porhacer {
+    background-color: #3F3F3D;
+    color:#ffffff;
+}
+
+.pendiente {
+    background-color: #ad3210;
+    color: #ffffff;
+}
+
+.trabajando {
+    background-color: #ad8110;
+    color: #ffffff;
+}
+
+.completado {
+    background-color: #008000;
+    color: #ffffff;
+}
+
+.taskcontent{
+    height:auto;
+
+}
+
+.task {
+    padding: 0.5em;
+    background-color: #f7dd00;
+    cursor: pointer;
+    margin:0 0.5em;
+    margin-bottom: 0.5em;
+    transition:all 1s;
+}
+
+    .task:hover {
+        box-shadow: 0 10px 6px -6px #777;
+        transform:rotate(-2deg);
+    }
+
+@media (max-width: 600px) {
+    .statusboard {
+        height: 5px !important;
+    }
+}
+
+.ticketfooter{
+    border-top:dotted 1px rgba(0,0,0,0.5);
+    margin-top:0.5em;
+}
+
+.editticket {
+    color: #0000ff;
+}
+
+    .editticket:hover {
+        color: #6264a3;
+    }
+
+    .editticket:active {
+        color: #53558a;
+    }
+
+.removeticket {
+    color: #ff0000;
+}
+
+    .removeticket:hover {
+        color: #cc6a56;
+    }
+
+    .removeticket:active {
+        color: #a65d4b;
+    }
+
+.modaltodolist {
+    background-color: #A49751 !important;
+    border-radius:0;
+}
+
+.modaltodolistheader {
+    background-color: #3F3F3D !important;
+    color:#ffffff !important;
+}
+
+.todolistclose {
+    position: relative;
+    top: -1em !important;
+    opacity: 1 !important;
+    border-radius: 50% !important;
+    color: #3F3F3D !important;
+    background-color: #ffffff !important;
+    border: solid 5px #3F3F3D !important;
+    left: 0.5em !important;
+    padding: 7px 10px !important;
+}
+    .todolistclose:hover {
+        opacity: 1;
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+        background-color: #3F3F3D !important;
+    }
+
+.calendaricon {
+    color: #E65848;
+}
+
+.timeicon {
+    color: #27C7CE;
+}

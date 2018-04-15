@@ -6,8 +6,9 @@
     toDoListResource.user = {};
 
     //Web api URL head.
-    toDoListResource.url = "http://localhost:3641/";
+    toDoListResource.url = "http://localhost:3641";
 
+    toDoListResource.version = "v1";
 
     /**
     * Summary. 

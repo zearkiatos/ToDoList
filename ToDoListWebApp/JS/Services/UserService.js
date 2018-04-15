@@ -7,7 +7,7 @@
 
     userService.getUser = function (name) {
         var temp = {};
-        return h.get(tr.getUrl() + "/api/v1/Users/" + name).then(function (response) {
+        return h.get(tr.getUrl() + "/api/"+tr.version+"/Users/" + name).then(function (response) {
             if (typeof response.data === "object")
                 return response.data;
             else

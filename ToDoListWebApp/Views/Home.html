@@ -5,6 +5,11 @@
 </section>
 <section class="container todolist-container">
     <div class="row">
+        <div class="alert alert-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" id="notifications" role="alert">
+            {{message}}
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 
         </div>
@@ -16,9 +21,9 @@
                 <section class="frmsection">
                     <form class="form frmlogin" name="frmlogin" id="frmlogin">
                         <div class="form-group">
-                            <input type="text" id="username" name="username" placeholder="Nombre de Usuario" class="form-control todolist-form-control" />
+                            <input type="text" id="username" name="username" ng-model="model.user.name" placeholder="Nombre de Usuario" class="form-control todolist-form-control" value="{{model.user.name}}" />
                         </div>
-                        <button type="button" class="btn todolist-btn-primary">Enviar</button>
+                        <button type="button" class="btn todolist-btn-primary" ng-click="logIn()">Enviar</button>
                     </form>
                 </section>
             </div>

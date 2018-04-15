@@ -109,12 +109,17 @@
     <Content Include="JS\AngularJS\angular.min.js" />
     <Content Include="JS\App.js" />
     <Content Include="JS\Bootstrap\bootstrap.js" />
+    <Content Include="JS\Controllers\BoardController.js" />
     <Content Include="JS\Controllers\HomeController.js" />
+    <Content Include="JS\Dragula\dragula.js" />
+    <Content Include="JS\Functions.js" />
     <Content Include="JS\Interact\interact.js" />
     <Content Include="JS\JQuery\jquery-3.3.1.js" />
     <Content Include="JS\RouteConfig.js" />
     <Content Include="JS\Services.js" />
+    <Content Include="JS\Services\BoardService.js" />
     <Content Include="JS\Services\UserService.js" />
+    <Content Include="Views\Board.html" />
     <Content Include="Views\Home.html" />
     <Content Include="Web.config" />
   </ItemGroup>

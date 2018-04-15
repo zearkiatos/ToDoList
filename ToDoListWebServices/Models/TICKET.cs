@@ -23,7 +23,7 @@ namespace ToDoListWebServices.Models
         public long id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-        public System.DateTime date { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
         public int estimated_time { get; set; }
         public long board_id { get; set; }
     

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -74,13 +75,16 @@ namespace ToDoListWebServices.Controllers
 
         // POST: api/TICKETs
         [Route("api/" + Utils.Contants.version + "/TICKETs")]
+        [HttpPost]
         [ResponseType(typeof(TICKET))]
         public IHttpActionResult PostTICKET(TICKET tICKET)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            tICKET.date = DateTime.Now.Date + DateTime.Now.TimeOfDay;
+            //tICKET.date = DateTime.ParseExact(tICKET.date.ToString(), "yyyy-MM-dd HH:mm:ss",CultureInfo.InvariantCulture);
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             db.TICKET.Add(tICKET);
             db.SaveChanges();

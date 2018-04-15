@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ToDoListWebServices.Models;
@@ -15,6 +16,7 @@ namespace ToDoListWebServices.Controllers
     public class USERSController : ApiController
     {
         private TO_DO_LISTEntities db = new TO_DO_LISTEntities();
+        private Error error;
         [Route("api/" + Utils.Contants.version + "/USERS")]
         // GET: api/USERS
         public IQueryable<USERS> GetUSERS()
@@ -23,17 +25,28 @@ namespace ToDoListWebServices.Controllers
         }
 
         // GET: api/USERS/5
-        [Route("api/" + Utils.Contants.version + "/USERS/{id}")]
+        [Route("api/" + Utils.Contants.version + "/USERS/{name}")]
         [ResponseType(typeof(USERS))]
-        public IHttpActionResult GetUSERS(long id)
+        public async Task<IHttpActionResult> GetUSERS(string name)
         {
-            USERS uSERS = db.USERS.Find(id);
-            if (uSERS == null)
+            error = new Error();
+            try
             {
+                USERS uSERS = db.USERS.FirstOrDefault(x => x.name.ToUpper() == name.ToUpper());
+                if (uSERS == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(uSERS);
+            }
+            catch(Exception e)
+            {
+                error.ErrorId = -1;
+                error.Description = e.Message;
                 return NotFound();
             }
 
-            return Ok(uSERS);
         }
 
         // PUT: api/USERS/5
