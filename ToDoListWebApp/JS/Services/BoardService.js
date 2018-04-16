@@ -37,10 +37,29 @@
             }
         }
 
-        h.post(tr.getUrl() + "/api/" + tr.version + "/TICKETs", datapost).then(function (response) {
-
-        });
+        h.post(tr.getUrl() + "/api/" + tr.version + "/TICKETs", datapost);
     };
 
+    boardService.changeStatus = function (ticketId, statusId) {
+            h.post(tr.getUrl() + "/api/" + tr.version + "/ChangeTicketStatus/" + ticketId + "/" + statusId).then(function (response) {
+
+        });
+    }
+
+    boardService.putTicket = function (ticketId, datapost) {
+        var temp = {};
+        var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        };
+
+        h.put(tr.getUrl() + "/api/" + tr.version + "/TICKET/" + ticketId, datapost);
+    }
+
+    boardService.deleteTicket = function (ticketId) {
+        console.log(ticketId);
+        h.delete(tr.getUrl() + "/api/" + tr.version + "/TICKET/" + ticketId);
+    }
     return boardService;
 }]);

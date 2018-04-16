@@ -18,8 +18,8 @@ namespace ToDoListWebServices
             config.EnableCors(cors);
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/"+Utils.Contants.version+"{controller}/{id}/{id2}",
+                defaults: new { id = RouteParameter.Optional, id2=RouteParameter.Optional }
             );
         }
     }

@@ -74,6 +74,47 @@ namespace ToDoListWebServices.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // PUT: api/REL_TICKET_HAS_STATUS/5
+        [Route("api/" + Utils.Contants.version + "/ChangeTicketStatus/{ticketId}/{statusId}")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult ChangeTicketStatus(int ticketId,int statusId)
+        {
+            REL_TICKET_HAS_STATUS rEL_TICKET_HAS_STATUS;
+            rEL_TICKET_HAS_STATUS = db.REL_TICKET_HAS_STATUS.FirstOrDefault(x=>x.id_ticket == ticketId);
+            var id = rEL_TICKET_HAS_STATUS.id;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != rEL_TICKET_HAS_STATUS.id)
+            {
+                return BadRequest();
+            }
+
+            rEL_TICKET_HAS_STATUS.id_status = statusId;
+            db.Entry(rEL_TICKET_HAS_STATUS).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!REL_TICKET_HAS_STATUSExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // POST: api/REL_TICKET_HAS_STATUS
         [Route("api/" + Utils.Contants.version + "/REL_TICKET_HAS_STATUS")]
         [ResponseType(typeof(REL_TICKET_HAS_STATUS))]

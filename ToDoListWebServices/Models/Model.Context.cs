@@ -31,5 +31,7 @@ namespace ToDoListWebServices.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TICKET> TICKET { get; set; }
         public virtual DbSet<USERS> USERS { get; set; }
+
+        
     }
 }

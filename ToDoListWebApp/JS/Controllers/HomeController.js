@@ -1,10 +1,10 @@
 ﻿app.controller("HomeController", ["$scope", "$rootScope", "$http", "$location", "UserService", function (s,r,h,l,us) {
     s.user = {};
 
-    console.log(localStorage.getItem("currentUserData"));
+    console.log(sessionStorage.getItem("user"));
 
-    if (localStorage.getItem("currentUserData")) {
-        s.user = JSON.parse(localStorage.getItem("currentUserData"));
+    if (sessionStorage.getItem("user")) {
+        s.user = JSON.parse(sessionStorage.getItem("user"));
         console.log(s.user);
         l.path("/Board");
     }
@@ -30,7 +30,8 @@
     s.logIn = function () {
         console.log(s.model.user.name);
         us.getUser(s.model.user.name).then(function (data) {
-            localStorage.setItem("currentUserData", JSON.stringify(data));
+            sessionStorage.removeItem("user");
+            sessionStorage.setItem("user", JSON.stringify(data));
             s.user = data;
             if (s.user != null) {
                 if (s.user.name.toUpperCase() == s.model.user.name.toUpperCase()) {
@@ -42,7 +43,8 @@
                             "name": s.user.name
                         }
                     };
-                    localStorage.setItem("currentUserData", JSON.stringify(s.model));
+                    sessionStorage.removeItem("user");
+                    sessionStorage.setItem("user", JSON.stringify(s.model));
                     console.log(s.model);
                     console.log("Login is success.");
                     location.href = "/"
@@ -101,7 +103,7 @@
 * @listens event:onclick
 */
     s.LogUp = function () {
-        localStorage.removeItem("currentUserData");
+        sessionStorage.removeItem("user");
         s.user = {};
         s.model = {};
         location.href = "/";

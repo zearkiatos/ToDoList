@@ -37,10 +37,10 @@ namespace ToDoListWebServices.Controllers
             return Ok(tICKET);
         }
 
-        // PUT: api/TICKETs/5
-        [Route("api/" + Utils.Contants.version + "/TICKETs/{id}")]
+        // PUT: api/TICKET/5
+        [Route("api/" + Utils.Contants.version + "/TICKET/{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTICKET(long id, TICKET tICKET)
+        public IHttpActionResult PutTICKET(int id, TICKET tICKET)
         {
             if (!ModelState.IsValid)
             {
@@ -74,8 +74,8 @@ namespace ToDoListWebServices.Controllers
         }
 
         // POST: api/TICKETs
-        [Route("api/" + Utils.Contants.version + "/TICKETs")]
         [HttpPost]
+        [Route("api/" + Utils.Contants.version + "/TICKETs",Name = "PostTICKET")]
         [ResponseType(typeof(TICKET))]
         public IHttpActionResult PostTICKET(TICKET tICKET)
         {
@@ -93,7 +93,8 @@ namespace ToDoListWebServices.Controllers
         }
 
         // DELETE: api/TICKETs/5
-        [Route("api/" + Utils.Contants.version + "/TICKETs/{id}")]
+
+        [Route("api/" + Utils.Contants.version + "/TICKET/{id}")]
         [ResponseType(typeof(TICKET))]
         public IHttpActionResult DeleteTICKET(long id)
         {
